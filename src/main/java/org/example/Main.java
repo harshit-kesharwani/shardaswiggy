@@ -1,19 +1,42 @@
-package org.example;
+import java.util.Scanner;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String[] restaurantNames = { "Uncle's Cafe", "Lego" };
+        String[][] menus = {
+                { "Lassi", "Cold Drink" },
+                { "Biryani", "Keema Polao" }
+        };
+        double[][] prices = {
+                { 40.0, 20.0 },
+                { 110.0, 150.0 }
+        };
+        // Display Welcome Message
+        System.out.println("Welcome to the Swiggy Customer application ");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Display available restaurants
+        System.out.println("Choose a restaurant:");
+        for (int i = 0; i < restaurantNames.length; i++) {
+            System.out.println((i + 1) + ". " + restaurantNames[i]);
+        }
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        // Get user input for restaurant selection
+        Scanner scanner = new Scanner(System.in);
+        int restaurantIndex = scanner.nextInt();
+        scanner.close();
+
+        // Display menu for the selected restaurant
+        if (restaurantIndex >= 1 && restaurantIndex <= restaurantNames.length) {
+            int index = restaurantIndex - 1;
+            System.out.println("Menu for " + restaurantNames[index] + ":");
+            String[] menu = menus[index];
+            double[] menuPrices = prices[index];
+
+            for (int i = 0; i < menu.length; i++) {
+                System.out.println((i + 1) + ". " + menu[i] + " - " + menuPrices[i]);
+            }
+        } else {
+            System.out.println("Invalid restaurant selection!");
         }
     }
 }
